@@ -289,73 +289,181 @@ function Pengalaman() {
 
 /* ──────────────────────────── Proyek ───────────────────────────────── */
 
-const PROJECTS = [
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  link: string;
+  image?: string; // Tambahkan opsional image
+}
+
+const PROJECTS: Project[] = [
   {
-    title: "C-TECH Inventory System",
+    title: "Full-Stack -  C-TECH Inventory System",
     description:
       "Mengembangkan aplikasi web inventory end-to-end beserta rancangan database-nya menggunakan PHP, CodeIgniter 3, dan MySQL. Menciptakan fitur-fitur manajemen stok harian dan modul pelaporan otomatis.",
     tags: ["PHP", "CodeIgniter", "MySQL", "JavaScript", "AJAX", "Tailwind CSS"],
     link: "https://github.com/LoOhEx/inv_system",
+    image: "/projects/C-Tech (1).png",
   },
   {
-    title: "Network	Anomaly	Detection	System	Using	Hybrid	AutoEncoder–Random	Forest	on	HIKARI-2021",
+    title: "Machine Learning - Network Anomaly Detection System",
     description:
       "Membangun model deteksi anomali jaringan menggunakan arsitektur AutoEncoder-Random Forest dengan Python dan TensorFlow/Keras. Melakukan pembersihan data, penanganan class imbalance, dan evaluasi model terhadap serangan zero-day.",
     tags: ["Python", "TensorFlow", "Keras", "Scikit-learn", "Pandas", "NumPy"],
-    link: "#",
+    link: "https://www.kaggle.com/code/dhafimf/ae-rf-final",
+    image: "/projects/Machine Learning.png",
   },
   {
-    title: "Bantu.In	—	Fundraising	Platform",
+    title: "Back-End - Bantu.In — Fundraising Platform",
     description:
       "Mengembangkan sistem back-end aplikasi fundraising beserta alur pembayarannya menggunakan PHP dan Laravel. Merancang skema database pada Firebase Firestore untuk mengelola data transaksi, pengguna, dan kampanye donasi secara terintegrasi.",
     tags: ["PHP", "Laravel", "Firebase", "REST API", "Git", "Blade"],
-    link: "#",
+    link: "https://github.com/LoOhEx/laravel-fundraising",
+    image: "/projects/Bantu (1).png",
   },
   {
-    title: "Glucose	Diary	—	Backend	API	for	Glucose	Tracking	and	Doctor	Booking",
+    title: "Back-End - Glucose Diary — Backend API",
     description:
       "Membangun backend API menggunakan Spring Boot dan merancang database MySQL untuk manajemen data pengguna, catatan konsumsi, serta jadwal dokter. Mengimplementasikan Spring Security dan lapisan data yang tangguh untuk memastikan kelancaran aplikasi.",
     tags: ["Java", "Spring Boot", "Spring Security", "Hibernate", "MySQL", "Maven"],
     link: "#",
+    image: "",
+  },
+  {
+    title: "Data Analytics - COVID-19 Monitoring Dashboard",
+    description:
+      "Membangun dan mempublikasikan dashboard analitik interaktif menggunakan Power BI Service untuk memonitor data kasus COVID-19 di Indonesia. Mengolah dataset dengan pemodelan data yang terstruktur (Report & Model View) guna menyajikan Key Performance Indicators (KPI) dan visualisasi demografi yang informatif.",
+    tags: ["Power BI", "Power BI Service", "Data Analytics", "Data Modeling", "Dashboard", "DAX"],
+    link: "#",
+    image: "",
   },
 ];
 
 function Proyek() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   return (
     <Section id="proyek" title="Proyek" className="bg-zinc-50 dark:bg-zinc-900">
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {PROJECTS.map((project) => (
-          <a
+          <div
             key={project.title}
-            className="group flex flex-col rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-950"
+            onClick={() => setSelectedProject(project)}
+            className="group cursor-pointer overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-950"
           >
-            {/* Project icon placeholder */}
-            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white dark:bg-blue-900/30">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-              </svg>
+            {/* Image Preview Area */}
+            <div className="relative h-48 w-full overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+              {project.image ? (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-blue-50 text-blue-600 dark:bg-blue-900/20">
+                   <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                  </svg>
+                </div>
+              )}
+              {/* Overlay on hover */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity group-hover:opacity-100 flex items-center justify-center">
+                <span className="text-white font-medium text-sm">Lihat Detail</span>
+              </div>
             </div>
 
-            <h3 className="mb-2 text-lg font-bold text-zinc-900 dark:text-zinc-50">
-              {project.title}
-            </h3>
-            <p className="mb-5 flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              {project.description}
-            </p>
-
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="p-5">
+              <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 group-hover:text-blue-600 transition-colors">
+                {project.title}
+              </h3>
             </div>
-          </a>
+          </div>
         ))}
       </div>
+
+      {/* Modal / Detail Card */}
+      {selectedProject && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-zinc-950/60 backdrop-blur-sm"
+            onClick={() => setSelectedProject(null)}
+          />
+          
+          {/* Modal Content */}
+          <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl bg-white shadow-2xl dark:bg-zinc-900 animate-in fade-in zoom-in duration-300">
+            {/* Close Button */}
+            <button 
+              onClick={() => setSelectedProject(null)}
+              className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white backdrop-blur-md hover:bg-white/20 transition-colors"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Image in Modal */}
+            <div className="h-64 w-full bg-zinc-200 dark:bg-zinc-800">
+              {selectedProject.image ? (
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-blue-600 text-white">
+                   <svg className="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                  </svg>
+                </div>
+              )}
+            </div>
+
+            <div className="p-8">
+              <h3 className="mb-4 text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+                {selectedProject.title}
+              </h3>
+              <p className="mb-6 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                {selectedProject.description}
+              </p>
+
+              <div className="mb-8">
+                <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                  Teknologi & Tools
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-11 items-center justify-center rounded-xl bg-blue-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+                >
+                  Kunjungi Proyek
+                </a>
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="inline-flex h-11 items-center justify-center rounded-xl border border-zinc-200 px-6 text-sm font-semibold text-zinc-600 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+                >
+                  Tutup
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </Section>
   );
 }
@@ -363,39 +471,29 @@ function Proyek() {
 /* ──────────────────────────── Keahlian ─────────────────────────────── */
 
 const SKILLS = [
-  { name: "HTML / CSS", level: 95 },
-  { name: "JavaScript / TypeScript", level: 90 },
-  { name: "React / Next.js", level: 85 },
-  { name: "Tailwind CSS", level: 90 },
-  { name: "Node.js", level: 80 },
-  { name: "MySQL", level: 90 },
-  { name: "Git / GitHub", level: 85 },
-  { name: "UI/UX Design", level: 85 },
-  { name: "Python", level: 90 },
-  { name: "C++", level: 85 },
+  "HTML / CSS",
+  "JavaScript / TypeScript",
+  "React / Next.js",
+  "Tailwind CSS",
+  "Node.js",
+  "MySQL",
+  "Git / GitHub",
+  "UI/UX Design",
+  "Python",
+  "C++",
 ];
 
 function Keahlian() {
   return (
     <Section id="keahlian" title="Keahlian" className="bg-white dark:bg-zinc-950">
-      <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
+      <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-3">
         {SKILLS.map((skill) => (
-          <div key={skill.name}>
-            <div className="mb-2 flex items-center justify-between">
-              <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
-                {skill.name}
-              </span>
-              <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
-                {skill.level}%
-              </span>
-            </div>
-            <div className="h-2.5 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-700"
-                style={{ width: `${skill.level}%` }}
-              />
-            </div>
-          </div>
+          <span
+            key={skill}
+            className="rounded-full border border-zinc-200 bg-zinc-50 px-4 py-2 text-sm font-medium text-zinc-800 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200"
+          >
+            {skill}
+          </span>
         ))}
       </div>
     </Section>
